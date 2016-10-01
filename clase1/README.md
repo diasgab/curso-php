@@ -18,7 +18,7 @@ par:
 ...
 <div class="jumbotron">
       <div class="container">
-        <h1><?php echo "Hola mundo!"; ?></h1>
+        <h1><?php echo 'Hola mundo!'; ?></h1>
         ...
       </div>
 </div>
@@ -34,7 +34,7 @@ La función de la sentencia `echo` es imprimir una cadena de texto o string. Los
 
 ## 2. Variables
 
-Antes de comenzar con las variables, cabe aclarar que las etiquetas **<\?php** y **?>** pueden ir en distintas líneas. Como se puede ver, si no imprimimos nada, no habrá ningún cambio en el resultado final. Ni siquiera habrá líneas vacías o espacios en blanco.
+Antes de seguir con las variables, cabe aclarar que las etiquetas `<?php` y `?>` pueden ir en distintas líneas. Como se puede ver, si no imprimimos nada, no habrá ningún cambio en el resultado final. Ni siquiera habrá líneas vacías o espacios en blanco.
 ```
 <!-- index.php -->
 ...
@@ -50,10 +50,10 @@ Antes de comenzar con las variables, cabe aclarar que las etiquetas **<\?php** y
 </div>
 ...
 ```
-Para crear una variable, comienza con el signo pesos ($), escribe un nombre significativo, y sigue con el simbolo **=** para asignarle un valor. Utiliza un punto y coma para terminar la sentencia.
+Para crear una variable, comienza con el signo pesos ($), escribe un nombre significativo, y sigue con el simbolo `=` para asignarle un valor. Utiliza un punto y coma para terminar la sentencia.
 ```
 <?php
-    $mensajeBienvenida = 'Bienvenido al resumen de noticias';
+    $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
 ?>
 ```
 
@@ -67,7 +67,7 @@ Reemplaza el string de `echo` con la nueva variable.
 <div class="jumbotron">
       <div class="container">
         <?php
-        $mensajeBienvenida = 'Bienvenido al resumen de noticias';
+        $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
         
         ?>
         <h1><?php echo $mensajeBienvenida; ?></h1>
@@ -89,11 +89,11 @@ Las variables pueden ser numéricas también, para lo cual no se require ninguna
 <div class="jumbotron">
       <div class="container">
         <?php
-        $mensajeBienvenida = 'Bienvenido al resumen de noticias';
-        $noticiasCount = 20;
+        $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
+        $ideasCount = 20;
         ?>
         <h1><?php echo $mensajeBienvenida; ?></h1>
-        <p>Tienes <?php echo $noticiasCount; ?> para leer</p>
+        <p>Tienes <?php echo $ideasCount; ?> para inspirarte</p>
         ...
       </div>
 </div>
@@ -101,30 +101,37 @@ Las variables pueden ser numéricas también, para lo cual no se require ninguna
 ```
 
 > **NOTA:** Para ver todos los tipos de variable soportador por PHP acceder a []()http://php.net/manual/es/language.types.php 
+
 ### Haciendo enojar a PHP con errores de sintaxis
 
+```
+<?php   
+    $mensajeBienvenida = 'Bienvenido a un mundo de ideas'
+    $ideasCount = 20;
+?>
+```
 
 ### Tipos de variables y otras consideraciones
 
-- PHP es un lenguaje que se interpreta en tiempo de ejecución
-- No es neceario especificar el tipo de variable.
+PHP es un lenguaje que se interpreta en tiempo de ejecución y no es neceario especificar el tipo de variable. Por lo tanto en teoría se puede utilizar la misma variable y a medida que se realice una nueva asignación se no solo cambiará el valor sino el tipo.
 
 ```
 $variable = 'Nombre'; (string)
 $variable = 30;
 $variable = array();
+$variable = true;
 ```
 
-A pesar de no ser recomendado el uso anterior, es una posibilidad que incluye el lenguaje, lo cual lo hace versátil y a su vez dificil de controlar si no se adoptan buenas prácticas al comenzar y mantener un proyecto.
+A pesar de no ser recomendado el uso anterior, es una posibilidad que incluye el lenguaje, lo cual lo hace versátil y a su vez dificil de controlar si no se adoptan buenas prácticas al comenzar y mantener un proyecto. Por esta simple razón se recomienda la utilización de un framework (ej. symfony) que brinda una estructura base para nuestra aplicación.
 
 ##2. Funciones
 
-Como la mayoría de los lenguajes de programación, PHP tiene funciones, como por ejemplo `rand()`que se utiliza para obtener un número entero aleatorio.
+Como la mayoría de los lenguajes de programación, PHP tiene funciones, como por ejemplo `rand()` que se utiliza para obtener un número entero aleatorio.
 
 ```
 <?php
-    $mensajeBienvenida = 'Bienvenido al resumen de noticias';
-    $noticiasCount = rand();
+    $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
+    $ideasCount = rand();
 ?>
 ```
 >**NOTA:** Para acceder a documentación de todas las funciones de PHP, puedes hacerlo desde el sitio web oficial [http://php.net](). Para acceder directamente a una función escribe [http://php.net/NOMBRE_FUNCION](), por ejemplo [http://php.net/rand]().
@@ -135,11 +142,11 @@ Cuando refresquemos la página veremos un número distinto cada vez.
 
 #### Funciones con argumento
 
-Podemos pasar un valor a la función rand(), como figura en la documentación. Este parámetro es opcional y será 0 en caso que no lo pasemos.
+Podemos pasar un valor a la función `rand()`, como figura en la documentación. Este parámetro es opcional y será 0 en caso que no lo pasemos.
 ```
 <?php
-    $mensajeBienvenida = 'Bienvenido al listado de ideas';
-    $noticiasCount = rand(50);
+    $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
+    $ideasCount = rand(50);
 ?>
 ```
 
@@ -147,15 +154,14 @@ Probemos también con `rand(50,100)`.
 
 #### Declaración de funciones
 
-Si quisiesemos definir una función que nos permita obtener la cantidad de noticias totales, podríamos definirla de la siguiente manera:
+Si quisieramos definir una función que nos permita obtener la cantidad de ideas totales, podríamos definirla de la siguiente manera:
 
 ```
 <?php
-    function getCantidadNoticias() {
-        $noticias = rand();
-        return $noticias;
+    function getIdeasCount() {
+        return rand();
     }
-    $noticiasCount = getCantidadNoticias();
+    $ideasCount = getIdeasCount();
 ?>
 ```
 
@@ -200,7 +206,7 @@ Para definir un array se hace de la siguiente manera:
 
 ### Iterando el array
 
-Para iterar sobre el array $ideas, utilizaremos la sentencias `foreach`, como sigue:
+Para iterar sobre el array `$ideas`, utilizaremos la sentencias `foreach`, como sigue:
 
 ```
 <?php
@@ -223,13 +229,18 @@ Para iterar sobre el array $ideas, utilizaremos la sentencias `foreach`, como si
 
 ### Accediendo a items específicos del array
 
+Para visualizar la estructura de un array podemos utilizar la función `var_dump`. Otra alternativa que no incluye los tipos de datos es la función `print_r()`.
+```
+<?php
 var_dump($ideas);
-
+?>
+```
 ### Claves y valores
 
+Para acceder a un elemento específico de un array:
 
-### Arrays asociativos
-
-$idea1 = array();
-$idea1['nombre'] = "Aplicación móvil";
-$idea1['descripcion'] = "Aplicación móvil para consultar el clima";
+```
+<?php
+echo $ideas[0];
+?>
+```
