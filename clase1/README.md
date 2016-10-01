@@ -10,7 +10,7 @@
 
 ##1. Hola Mundo
 
-Para escribir código PHP debemos comenzar siempre con la misma etiqueta: **<\?php**. Esta etiqueta indica que ya no estamos escribiendo código HTML, sino que vamos a escribir código PHP. Empecemos imprimiendo un mensaje con la sentencia ```echo```. Deberás terminar la linea con un punto y coma ; y luego escribe la etiqueta de cierre **?>**. Estos últimos dos caracteres nos sacan del modo PHP y nos devuelven al HTML. El <?php y ?> son exactamente opuestos y siempre se usan a la
+Para escribir código PHP debemos comenzar siempre con la misma etiqueta: `<?php`. Esta etiqueta indica que ya no estamos escribiendo código HTML, sino que vamos a escribir código PHP. Empecemos imprimiendo un mensaje con la sentencia `echo`. Deberás terminar la linea con un punto y coma `;` y luego escribir la etiqueta de cierre `?>`. Estos últimos dos caracteres nos sacan del modo PHP y nos devuelven al HTML. El `<?php` y `?>` son exactamente opuestos y siempre se usan a la
 par:
 
 ```
@@ -25,11 +25,11 @@ par:
 ...
 ```
 
-Recarga la página y deberías ver el nuevo texto.
+Recarga la página y veras el nuevo texto.
 
-La función de `echo` es imprimir una cadena de texto o string. Los strings se engloban siempre en comillas simples (tmabién se puede hacer con comillas dobles).
+La función de la sentencia `echo` es imprimir una cadena de texto o string. Los strings se engloban siempre en comillas simples (también se puede hacer con comillas dobles).
 
-**Explicación de Request (ver gráfico):** El cliente inicia la acción de solicitar una página. Se envía el request al servidor. El servidor utiliza el intérprete de php para evaluar el resultado de index.php luego de ejecutar el código php que el mismo contenga. El resultado final será enviado como respuesta al cliente.
+**Explicación de web pretición web:** El cliente inicia la acción de solicitar una página. Se envía el request al servidor. El servidor utiliza el intérprete de php para evaluar el resultado de index.php luego de ejecutar el código php contenido en el mismo. El resultado final será enviado como respuesta al cliente (ningún código PHP será incluido en la respuesta). Es decir, solamente se envía texto como respuesta.
 
 
 ## 2. Variables
@@ -100,6 +100,7 @@ Las variables pueden ser numéricas también, para lo cual no se require ninguna
 ...
 ```
 
+> **NOTA:** Para ver todos los tipos de variable soportador por PHP acceder a []()http://php.net/manual/es/language.types.php 
 ### Haciendo enojar a PHP con errores de sintaxis
 
 
