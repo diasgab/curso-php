@@ -2,7 +2,7 @@
 
 - Completar Unidad 1
 
-## 2. Variables
+## Variables
 
 Las etiquetas `<?php` y `?>` pueden ir en distintas líneas. Como se puede ver, si no imprimimos nada, no habrá ningún cambio en el resultado final. Ni siquiera habrá líneas vacías o espacios en blanco.
 ```
@@ -20,14 +20,14 @@ Las etiquetas `<?php` y `?>` pueden ir en distintas líneas. Como se puede ver, 
 </div>
 ...
 ```
-Para crear una variable, comienza con el signo pesos ($), escribe un nombre significativo, y sigue con el simbolo `=` para asignarle un valor. Utiliza un punto y coma para terminar la sentencia.
+Para crear una variable, comienza con el signo pesos ($), escribe un nombre significativo, y sigue con el simbolo `=` para asignarle un valor. Utiliza un punto y coma para terminar la sentencia. En el siguiente ejemplo se crea una variable $mensajeBienvenida de tipo string.
 ```
 <?php
     $mensajeBienvenida = 'Bienvenido a un mundo de ideas';
 ?>
 ```
 
-Si refrescamos la página no veremos ningún cambio, lo cual tiene sentido ya que no imprimimos nada desde PHP.
+Si refrescamos la página no veremos ningún cambio, lo cual tiene sentido ya que no imprimimos nada desde PHP. Solamente estamos definiendo una variable pero no la estamos utilizando.
 
 Reemplaza el string de `echo` con la nueva variable.
 
@@ -48,10 +48,33 @@ Reemplaza el string de `echo` con la nueva variable.
 ```
 
 Refresca la página para ver el resultado final.
+Nota: se puede abrir y cerrar la etiqueta php cuantas veces queramos.
 
-### Variables enteras
+### Desafío
 
-Las variables pueden ser numéricas también, para lo cual no se require ninguna comilla.
+- Prueba mover la asignación de la variable $mensajeBienvenida al inicio del documento, antes de la etiqueta `<!DOCTYPE html>`. ¿Notas algún cambio al refrescar la página?
+- ¿Qué pasa si mueves ese fragmento al final, debajo de la etiqueta `</html>`?
+
+### Tipos de variables
+
+PHP es un lenguaje que se interpreta en tiempo de ejecución y no es necesario especificar el tipo de variable. El lenguaje permite que se pueda utilizar la misma variable para asignar diferentes valores de distintos tipos de datos. En el siguiente ejemplo vemos cómo a medida que `$variable` toma distintos valores también se modifica el tipo de dato de la misma, el cual se indica entre paréntesis.
+
+```
+$variable = 'Nombre'; (string)
+$variable = 30; (int)
+$variable = 5.13; (float)
+$variable = array(); (array)
+$variable = true; (boolen)
+$variable = new stdClass(); (object)
+```
+
+El ejemplo no es de uso recomendado, y solamente fue utilizado para denotar la versatilidad del lenguaje. Esta característica puede ocasionar grandes dolores de cabeza si no se utiliza a conciencia.
+
+> **NOTA:** Para ver todos los tipos de variable soportador por PHP acceder a []()http://php.net/manual/es/language.types.php 
+
+### Juguemos un poco más
+
+Agreguemos a nuestro ejemplo anterior una variable numérica para ver si utilización:
 
 ```
 <!-- index.php -->
@@ -63,14 +86,12 @@ Las variables pueden ser numéricas también, para lo cual no se require ninguna
         $ideasCount = 20;
         ?>
         <h1><?php echo $mensajeBienvenida; ?></h1>
-        <p>Tienes <?php echo $ideasCount; ?> para inspirarte</p>
+        <p>Tienes <?php echo $ideasCount; ?> ideas para inspirarte</p>
         ...
       </div>
 </div>
 ...
 ```
-
-> **NOTA:** Para ver todos los tipos de variable soportador por PHP acceder a []()http://php.net/manual/es/language.types.php 
 
 ### Haciendo enojar a PHP con errores de sintaxis
 
@@ -81,20 +102,7 @@ Las variables pueden ser numéricas también, para lo cual no se require ninguna
 ?>
 ```
 
-### Tipos de variables y otras consideraciones
-
-PHP es un lenguaje que se interpreta en tiempo de ejecución y no es neceario especificar el tipo de variable. Por lo tanto en teoría se puede utilizar la misma variable y a medida que se realice una nueva asignación se no solo cambiará el valor sino el tipo.
-
-```
-$variable = 'Nombre'; (string)
-$variable = 30;
-$variable = array();
-$variable = true;
-```
-
-A pesar de no ser recomendado el uso anterior, es una posibilidad que incluye el lenguaje, lo cual lo hace versátil y a su vez dificil de controlar si no se adoptan buenas prácticas al comenzar y mantener un proyecto. Por esta simple razón se recomienda la utilización de un framework (ej. symfony) que brinda una estructura base para nuestra aplicación.
-
-##2. Funciones
+##2. Uso de funciones
 
 Como la mayoría de los lenguajes de programación, PHP tiene funciones, como por ejemplo `rand()` que se utiliza para obtener un número entero aleatorio.
 
@@ -104,13 +112,13 @@ Como la mayoría de los lenguajes de programación, PHP tiene funciones, como po
     $ideasCount = rand();
 ?>
 ```
->**NOTA:** Para acceder a documentación de todas las funciones de PHP, puedes hacerlo desde el sitio web oficial [http://php.net](). Para acceder directamente a una función escribe [http://php.net/NOMBRE_FUNCION](), por ejemplo [http://php.net/rand]().
+>**TIP:** Para acceder a documentación de todas las funciones de PHP, puedes hacerlo desde el sitio web oficial [http://php.net](). Para acceder directamente a una función escribe [http://php.net/NOMBRE_FUNCION](), por ejemplo [http://php.net/rand]().
 
 Una función comienza siempre con un nombre seguido de parentesis (de apertura y cierre).
 
 Cuando refresquemos la página veremos un número distinto cada vez.
 
-#### Funciones con argumento
+#### Pasando argumentos
 
 Podemos pasar un valor a la función `rand()`, como figura en la documentación. Este parámetro es opcional y será 0 en caso que no lo pasemos.
 ```
@@ -137,7 +145,11 @@ Si quisieramos definir una función que nos permita obtener la cantidad de ideas
 
 ##3. Arrays y bucles
 
-Antes de crear un array partamos de la siguiente situación, en donde tenemos 3 variables creadas que utilizaremos como títulos en vez de los encabezados. 
+Un array en PHP es un mapa ordenado. Un mapa es un tipo de datos que asocia valores con claves. Este tipo se optimiza para varios usos diferentes; se puede emplear como un array, lista (vector), diccionario, colección, pila, cola y posiblemente más. Ya que los valores de un array pueden ser otros arrays, también son posibles árboles y arrays multidimensionales.
+
+Vamos a imprimir las 3 columnas con información con php en vez de html.
+
+Preparemos el terreno de la siguiente forma en donde utilizaremos un array para definir los títulos de los encabezados. 
 ```
 <?php
     $idea1 = 'Aplicación móvil';
@@ -188,29 +200,82 @@ Para iterar sobre el array `$ideas`, utilizaremos la sentencias `foreach`, como 
 ?>
 <div class="container">
     <div class="row">
-        <?php foreach($ideas a $idea): ?>
-        <div class="col-md-4">
-            <h2><?php echo $idea; ?> </h2>
-        </div>
-        <?php endforeach; ?>
+        <?php 
+            foreach($ideas a $idea) {
+                echo '<div class="col-md-4">';
+                echo '<h2>'. $idea .'</h2>';
+                echo '</div>';
+            }
+        ?>
     </div>
 </div>
 ```
+> **NOTA:** para concatenar cadenas de texto se utilza "." entre ambas cadenas. Ejemplo: `$saludo = "Hola ". $nombre;` donde $nombre es una variable de tipo string.
+ 
+La función de foreach es copiar cada elemento del array `$ideas` en la variable `$idea`. Se comienza siempre desde el primer elemento del array hasta llegar al último. Es decir que en el ejemplo anterior el bloque contenido dentro de foreach se ejecutará 3 veces. 
 
 ### Accediendo a items específicos del array
 
-Para visualizar la estructura de un array podemos utilizar la función `var_dump`. Otra alternativa que no incluye los tipos de datos es la función `print_r()`.
+Para visualizar la estructura de un array podemos utilizar la función `var_dump()`. Otra alternativa que no incluye los tipos de datos es la función `print_r()`.
 ```
 <?php
 var_dump($ideas);
 ?>
 ```
+
+> **TIP:** puedes utilizar la etiqueta html `<pre>` para visualizar de forma más clara el resultado de var_dump(). Ejemplo: `<pre><?php var_dump($array); ?></pre>` 
+
+El ejemplo anterior mostrará como resultado lo siguiente:
+
+```
+array (size=3)
+  0 => string 'Aplicación móvil' (length=18)
+  1 => string 'Pulsera inteligente' (length=19)
+  2 => string 'Taza que mantiente temperatura' (length=30)
+```
+
 ### Claves y valores
 
-Para acceder a un elemento específico de un array:
+En el ejemplo anterior trabajamos con la definición de un array simple. Sin embargo cuando imprimimos su contenido utilizando `var_dump()`, podemos ver claramente que la estructura del array es asociativa. Los arrays se componen de claves y valores. Para la clave `0` el valor es el string "Aplicación móvil".
+
+Las claves de un array pueden ser un integer o un string. El valor puede ser de cualquier tipo.
+
+Así por ejemplo podemos definir el siguiente $array:
 
 ```
 <?php
-echo $ideas[0];
+$array = array(
+    "foo" => "bar",
+    "bar" => "foo",
+    1 => "test"
+    "test" => 23
+    54 => 123
+);
+```
+
+¿Imprime la estructura del array anterior y observa qué sucede?
+
+Puedes también acceder a un elemento específico del array
+
+```
+<?php
+echo $array[1]; //imprime "test" 
+echo $array["bar"]; // ¿Qué imprime? 
 ?>
 ```
+
+### Arrays multidimensionales
+
+Además del título de la idea agreguemos una pequeña descripción a cada bloque.
+
+```
+$idea1 = ['titulo' => 'Aplicación móvil', 'descripcion' => 'Es una aplicación para conectar amigos'];
+$idea2 = ['titulo' => 'Pulsera inteligente', 'descripcion' => 'Sirve para medir el ritmo cardíaco'];
+$idea3 = ['titulo' => 'Taza que mantiente temperatura', 'descripcion' => 'Nunca más tendrás un café frio'];
+
+$ideas = [$idea1, $idea2, $idea3];
+```
+
+#### Desafío
+
+Con la ayuda de los conceptos presentados y la documentación de arrays de PHP []()http://php.net/manual/es/language.types.array.php utilza la definición anterior para imprimir debajo de cada encabezado una descripción de la idea.
