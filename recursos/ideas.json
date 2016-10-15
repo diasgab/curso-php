@@ -1,0 +1,30 @@
+[
+  {
+    "titulo": "Aplicación móvil",
+    "descripcion": "Es una aplicación para conectar amigos",
+    "categoria": "Mobile",
+    "autor": "Juan Carlos",
+    "votos": 8
+  },
+  {
+    "titulo": "Pulsera inteligente",
+    "descripcion": "Sirve para medir el ritmo cardíaco",
+    "categoria": "Accesorios",
+    "autor": "Laura Macilla",
+    "votos": 3
+  },
+  {
+    "titulo": "Taza que mantiente temperatura",
+    "descripcion": "Nunca más tendrás un café frio",
+    "categoria": "Accesorios",
+    "autor": "Pedro Aster",
+    "votos": 5
+  },
+  {
+    "titulo": "Auto inteligente",
+    "descripcion": "El primer vehículo que no require de un conductor humano",
+    "categoria": "Automotor",
+    "autor": "Carla Micón",
+    "votos": 9
+  }
+]

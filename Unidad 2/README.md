@@ -201,7 +201,7 @@ Para iterar sobre el array `$ideas`, utilizaremos la sentencias `foreach`, como 
 <div class="container">
     <div class="row">
         <?php 
-            foreach($ideas a $idea) {
+            foreach($ideas as $idea) {
                 echo '<div class="col-md-4">';
                 echo '<h2>'. $idea .'</h2>';
                 echo '</div>';
@@ -263,6 +263,43 @@ echo $array[1]; //imprime "test"
 echo $array["bar"]; // ¿Qué imprime? 
 ?>
 ```
+
+### Agregar y borrar items de un array indexado
+
+Para agregar un item a un array creado se debe utilizar la siguiente forma:
+
+```
+$idea = array(
+    'nombre' => 'Aplicación móvil',
+    'descripcion' => 'Es una aplicación para conectar amigos',
+);
+
+$idea['autor] => 'Juan Perez';
+``` 
+
+Lo que sucede es que asignamos a la clave 'autor' dentro del array $idea el valor 'Juan Perez'. Podemos utilizar `var_dump($idea)` para ver la estructura final.
+
+Para eliminar un elemento de un array se utiliza la función unset() de la siguiente forma:
+
+`unset($idea['autor'])`
+
+Es decir, se indica la clave del array que se desea eliminar
+
+### Agregar elementos a un array
+
+Además de utilizar una clave en particular para agregar un elemento a un array, también podemos agregar elementos de forma de agregar un elemento utilizando una clave en particular, también lo podemos hacer como sigue:
+
+```
+$idea1 = 'Aplicación móvil';
+$idea2 = 'Pulsera inteligente';
+$idea3 = 'Taza que mantiente temperatura';
+
+$ideas = array($idea1, $idea2, $idea3);
+
+$ideas[] = 'Ascensor intergaláctico';
+```
+
+Con la utilización de los corchetes [] estamos indicandole a PHP que se encargue de asignar una clave automáticamente al agregar el nuevo elemento.
 
 ### Arrays multidimensionales
 
