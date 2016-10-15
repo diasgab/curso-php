@@ -87,6 +87,7 @@ Supongamos que las ideas se clasifican como "Interesante" o "Irrelevante" en fun
 
 Los operadores se pueden utilizar en una expresión dentro de la sentencia if.
 
+```
 $a == $b            Chequea igualdad luego de la conversión de tipos
 $a === $b           Chequea igualdad incluyendo el tipo de datos
 $a != $b o $a <> $b Chequea si $a es distinto de $b
@@ -94,12 +95,14 @@ $a > $b
 $a >= $b
 $a < $b
 $a <= $b
+```
 
 ### Operadores lógicos
 
+```
 && and
 || or
-
+```
 
 ## Vuelta a funciones
 
