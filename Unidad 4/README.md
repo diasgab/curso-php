@@ -38,9 +38,9 @@ Particularmente en PHP lo podemos utilizar como sigue:
 ?>
 ```
 
-En el ejemplo anterior estamos utilizando un valor boolean true directamente como condición, por lo que siempre va a ingresar al bloque de código inmediatamente inferior.
+En el ejemplo anterior estamos utilizando un valor boolean true directamente como condición, por lo que siempre va a ingresar al bloque de código inmediatamente inferior (contenido entre {}).
 
-Para chequear si una clave está definida en un array podemos utilizar la función array_key_exists. El primer argumento es la clave, el segundo el array a chequear y el resultado es un booleano. 
+Para chequear si una clave está definida en un array podemos utilizar la función `array_key_exists`. El primer argumento es la clave, el segundo el array a chequear y el resultado es un booleano. 
 
 ```
 <?php 
