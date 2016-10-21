@@ -1,8 +1,8 @@
 ## Trabajando con archivos & JSON
 
-Por el momento nuestro array de ideas está escrito de forma manual y no es dinámico en absoluto. Eventualmente, vamos a traer este array desde una base de datos y permitir a los usuarios agregar nuevas ideas. PEro antes de llegar a esa instancia vamos a pretender que alguien nos brinda un archivo que contiene todas las ideas posibles. Nuestro objetivo será leer ese archivo y transformar su contenido en un array de PHP que sea similar en estructura al array que creamos de forma manual.
+Por el momento nuestro array de ideas está escrito de forma manual y no es dinámico en absoluto. Eventualmente, vamos a traer este array desde una base de datos y permitir a los usuarios agregar nuevas ideas. Pero antes de llegar a esa instancia trabajemos primero con archivos: vamos a suponer que alguien nos brinda un archivo que contiene todas las ideas posibles. Nuestro objetivo será leer ese archivo y transformar su contenido en un array de PHP que sea similar en estructura al array que creamos de forma manual.
  
- Para hacer las cosas más simples, puedes utilizar el archivo ideas.json` que aparece en este directorio.
+ Para hacer las cosas más simples, puedes utilizar el archivo ideas.json` que aparece en el directorio `recursos` del proyecto.
  
  Puedes abrir el archivo para ver su contenido:
 
@@ -39,7 +39,7 @@ Por el momento nuestro array de ideas está escrito de forma manual y no es din�
 ]
 ```
 
-Antes de continuar, hablemos un poco sobre JSON, que no tiene nada que ver con PHP, excepto que PHP lo puede leer. JSON es un formato de texto que puede ser utilizado para representar información de forma estructurada, como los detalles de una idea:
+Antes de continuar, hablemos un poco sobre JSON, que no tiene nada que ver con PHP, excepto que PHP lo puede leer. JSON es un formato de texto que puede ser utilizado para representar información de forma estructurada, como por ejemplo, los detalles de una idea:
 
 ```
 {
@@ -59,15 +59,15 @@ var_dump(json_encode($ideas));die;
 
 Cuando refrescamos la página, podemos ver que el JSON es equivalente a nuestro array, de forma similar a lo que tenemos en ideas.json.
 
-> **TIP:** la visualización en JSON puede ser un tanto confusa. Podemos utilizar el sitio http://www.freeformatter.com/json-formatter.html para visualizar los datos de forma más estructurada. Este formatter no cambia la estructura del string JSON que le pasemos, sino solamente su visualización.
+> **TIP:** la visualización en JSON puede ser un tanto confusa. Podemos utilizar el sitio http://www.freeformatter.com/json-formatter.html para visualizar los datos de forma más estructurada. Esta herramienta no cambia la estructura del string JSON que le pasemos, sino solamente su visualización.
 
-La razón por la que existe JSON es para que diferentes sistemas se puedan comunicar. Imagina si nuestra aplicación guardaría archivos que deban ser envíados e interpretados por otra aplicación totalmente distinta. JSON puede ser leido por cualquier lenguaje como python o javascript. JSON es una forma ideal de compartir datos y es uno de los formatos por defacto que se utiliza en las API modernas. 
+La razón por la que existe JSON es para que diferentes sistemas se puedan comunicar. Imagina si nuestra aplicación guardase archivos que deban ser enviados e interpretados por otra aplicación totalmente distinta. JSON puede ser leido por cualquier lenguaje como python o javascript. JSON es una forma ideal de compartir datos y es uno de los formatos por defacto que se utiliza en las API modernas. 
 
 Supongamos ahora que existe alguna otra parte de nuestra aplicación que permite que los usuarios agreguen ideas a nuestro archivo ideas.json. Nuestro trabajo será leer el contenido de este archivo para poder mostrar el listado completo.
 
 ### Abriendo y leyendo archivos
 
-Para leer el contenido de un archivo podemos utilizar la función file_get_contents (buscar en php.net). Como podemos ver en la documentación, esta función oslamente necesita como parámetro el nombre de un archivo. La misma función se encargará de abrirlo y retornar su contenido como un string.
+Para leer el contenido de un archivo podemos utilizar la función `file_get_contents` (buscar en php.net). Como podemos ver en la documentación, esta función solamente necesita como parámetro el nombre de un archivo. La misma función se encargará de abrirlo y retornar su contenido como un string.
 
 Probemos su uso y guardemos el resultado en una variable:
 
@@ -80,15 +80,15 @@ Cuando refresquemos la página veremos el contenido del string JSON!.
 
 ### Transformar JSON en un array de PHP
 
-Volviendo al objetivo inicial, nuestra idea es poder transformar el string JSON del archivo ideas.json en un array de php. Hasta el momento solamente utilizamos json_encode para transformar un array php en un string JSON. Por lo tanto es razonable que el camino inverso sea utilizando json_decode:
+Volviendo al objetivo inicial, nuestra idea es poder transformar el string JSON del archivo `ideas.json` en un array de php. Hasta el momento solamente utilizamos `json_encode` para transformar un array php en un string JSON. Por lo tanto es razonable que el camino inverso sea utilizando `json_decode`:
 
 ```
-$ideasJson = file_get_contents('ideas.json');
+$ideasJson = file_get_contents('../recursos/ideas.json');
 $ideas = json_decode($ideasJson);
 var_dump($ideas);die;
 ```
 
-Cuando refrescamos la página, el resultado es muy parecido a lo que necesitamos. Pero en vez de un array vemos algo como "stdClass". Esto es un objeto en PHP, pero por el momento no es necesario comprender de qué se trata. En cambio, si vamos a la documentación de json_decode, podemos ver que existe un segundo parámetro opcional el cual tiene como valor predeterminado false. En cambio, si fuese true, el resultado de la función sería un array asociativo:
+Cuando refrescamos la página, el resultado es muy parecido a lo que necesitamos. Pero en vez de un array vemos algo como "stdClass". Esto es un objeto en PHP, pero por el momento no es necesario comprender de qué se trata. En cambio, si vamos a la documentación de json_decode, podemos ver que existe un segundo parámetro opcional el cual tiene como valor predeterminado false. Si este parámetro fuese true, el resultado de la función sería un array asociativo:
 
 
 ```
@@ -129,10 +129,10 @@ var_dump($ideas);die;
 Retomando el desafío de la unidad 2, imprimamos todos los atributos de una idea: nombre, descripcion, categoria, autor y votos.
 
 
-### Guardando a un archivo
+### Guardando datos en un archivo
 
-¿Qué pasaría si quisieramos guardar datos en un archivo? Si vamos a la documentación de php de file_get_contents, veremos una función relacionada: file_put_contents. Su utilización también es muy simple. Solamente debemos pasarle un string y un nombre de archivo y la propia función se encargará de crear ese archivo con el contenido del string.
+¿Qué pasaría si quisieramos guardar datos en un archivo? Si vamos a la documentación oficial de php de la función file_get_contents, veremos una función relacionada: `file_put_contents`. Su utilización también es muy simple. Solamente debemos pasarle un string y un nombre de archivo y la propia función se encargará de crear ese archivo con el contenido del string.
 
 ### Otras formas de trabajar con archivos
 
-PHP tiene una amplia gama de funciones para trabajar con archivos además de file_get_contents y file_put_contents. Por ejemplo fopen, fread, fwrite and fclose. Por el momento, no hace falta que las utilicemos, salvo que estemos trabajando con archivos muy grandes.
+PHP tiene una amplia gama de funciones para trabajar con archivos además de file_get_contents y file_put_contents. Por ejemplo `fopen`, `fread`, `fwrite` y `fclose`. Por el momento, no hace falta que las utilicemos, salvo que estemos trabajando con archivos muy grandes.
