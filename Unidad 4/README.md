@@ -104,11 +104,54 @@ $a <= $b
 || or
 ```
 
+## Reorganizando nuestro código
+
+En todos los ejercicios llevados a cabo hasta el momento, estuvimos mezclando php con html. No es una buena práctica que la lógica de nuestra aplicación se mezcle con etiquetas html ya que ocasiona que nuestro código sea difícil de mantener. Vamos a reorganizar un poco nuestro código para evitar este inconveniente a futuro.
+
 ## Vuelta a funciones
 
-Ponemos la lectura del archivo en un función
+ En la sección anterior nos ocupamos de cargar un array con información procedente de un archivo json. Como ya mencionamos la idea es que a futuro podamos traer esa información desde una base de datos. Lo que pretendemos es encapsular la obtención de esta información (en nuestro caso de las _ideas_).
 
-## Include/require
+```
+$ideasJson = file_get_contents('../recursos/ideas.json');
+$ideas = json_decode($ideasJson);
+```
 
-Empezamos a organizar el código
+Queremos que la variable $ideas se cargue con los datos procedentes de una función, en donde encapsularemos la lectura del archivo. Creemos entonces una función que simplemente nos devuelva un array de $ideas:
 
+```
+function getIdeas() 
+{
+    $ideasJson = file_get_contents('../recursos/ideas.json');
+    return json_decode($ideasJson);
+}
+```
+
+La sentencia `return` permite especificar qué variable retorna la función. Una función puede retornar cualquier tipo de dato de php, como integers, string, arrays, boolean, etc
+ 
+Para almacenar el valor devuelto por esta función en nuestra variable $ideas, usamos la siguiente asignación:
+
+```
+$ideas = getIdeas();
+```
+
+**Consigna:** para mejorar la estructura de nuestro archivo, movamos los componentes que implican lógica o asignación de variables a la parte superior del archivo. En el código html solamente deberían quedar la impresión de variables existentes y estructuras de control como if y foreach.
+
+## Uso de require para la inclusión de funciones
+
+Movamos la creación de nuestra función a un archivo en el que guardaremos todas las futuras funciones. Creemos el archivo lib/funciones.php y movamos la función getIdeas().
+ 
+ Luego en nuestro código incluimos el archivo:
+ 
+```
+<?php
+ 
+ require 'lib/funciones.php';
+ 
+ // sigue código php...
+ 
+```
+
+Las sentencia require le indica a php que cargue y parsee el código de un archivo en particular.
+
+Existen otras sentencias similares que se utilizan para lograr una funcionalidad similar: require; require_once; include; include_once
