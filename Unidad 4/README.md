@@ -155,3 +155,39 @@ Movamos la creación de nuestra función a un archivo en el que guardaremos toda
 Las sentencia require le indica a php que cargue y parsee el código de un archivo en particular.
 
 Existen otras sentencias similares que se utilizan para lograr una funcionalidad similar: require; require_once; include; include_once
+
+## Definición de layout básico
+
+Encabezado (header):
+```
+<!-- layout/header.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>...</head>
+<body>
+<!-- código de encabezado aqui... -->
+```
+
+Pie de página (footer):
+```
+<!-- layout/footer.php -->
+<footer>...</footer>
+</body>
+</html>
+```
+
+Utilización en conjunto con nuestro código:
+
+```
+<?php
+    // index.php
+    // ... el código php con toda la lógica va aqui, al inicio
+?>
+<?php require 'layout/header.php'; ?>
+
+<!-- todo el código HTML y PHP del medio  ...-->
+
+<?php require 'layout/footer.php'; ?>
+```
+
+Probemos de crear otra página y reutilizar este layout
