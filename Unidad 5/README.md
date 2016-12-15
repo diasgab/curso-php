@@ -114,14 +114,6 @@ GET and POST Requests
 
 > Tip: en verdad existen otros tipos de solicitudes: PUT, HEAD and DELETE. En general son utilizados para las API web, por lo que no son relevantes por el momento.
 
-## Leyendo datos de una solicitud web
-
-Para acceder desde PHP a los datos enviados con el formulario utilizaremos la variable global $_POST. Veamos qué contenido tiene:
-
-````
-<?php var_dump($_POST); ?>
-````
-
 
 
 
